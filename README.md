@@ -8,7 +8,7 @@ This is a table with seven columns labeled Player, Rating, Deviation, Games, Win
 
 The Player column gives the names of the items. The Rating is a number expressing the strength of the preference. An item with a higher rating is preferred over an item with a lower rating. The Deviation is a number describing the program's confidence in the accuracy of the Rating. The smaller the Deviation, the higher the confidence. When creating a new player table, or when adding items to a player table, the Rating and Deviation should be set to 2200 and 300, respectively.
 
-The Lag is the last time the item was involved in a game, expressed as the number of seconds since 1969-12-31 19:00:00. For new items, the Lag should be set to the current time. This can be determined in R with the command, `as.numeric(Sys.time())`.
+The Lag is the last time the item was involved in a game, expressed as the number of seconds since 1970-01-01 00:00:00 UTC. For new items, the Lag should be set to the current time. This can be determined in R with the command, `as.numeric(Sys.time())`.
 
 The other columns are self-explanatory, and their initial values should be 0. Note that Draw is not used in this program. Nonetheless, the column must appear in the file.
 
