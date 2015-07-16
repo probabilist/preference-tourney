@@ -1,3 +1,5 @@
+library(PlayerRatings)
+
 # Get players and number of games played from player/ratings file.
 
 playerTable <- read.csv("player_table.csv") # read csv as a data frame
@@ -27,11 +29,14 @@ repeat{
   
   
   # prompt for preference
+  
+  ## display choices
   cat("\014") # clear console
   message("(1) ", players[pair[1]])
   message("(2) ", players[pair[2]])
-  n <- -1
+  
   ## repeat prompt until valid choice or return
+  n <- -1
   while(n < 1 | n > 2){
     n <- readline("type choice, or return for exit: ")
     n <- ifelse(grepl("\\D",n),-1,as.integer(n))
@@ -46,6 +51,7 @@ repeat{
   
   
   # record result
+  
   ## on first game, create variables; on later games, append variables
   if(firstGame == 1){
     homeTeam <- players[pair[1]]
@@ -78,7 +84,8 @@ if(firstGame == 0){
   week <- rep(1,length(homeTeam)) # create the time period column
   
   ## create data frame for glicko
-  gameList <- data.frame(Week = week, HomeTeam = homeTeam, AwayTeam = awayTeam, Score = score)
+  gameList <- data.frame(Week = week, HomeTeam = homeTeam, AwayTeam = awayTeam,
+                         Score = score)
   
   ## convert factors to characters, for better functioning and
   ## to be compatible with glicko function
@@ -99,7 +106,6 @@ if(firstGame == 0){
   
   
   # compute ratings, sorted by player
-  library(PlayerRatings)
   robj <- glicko(gameList, status = playerTable, sort = FALSE)
   
   
@@ -115,5 +121,6 @@ if(firstGame == 0){
   robj.df <- do.call("rbind", lapply(robj["ratings"], as.data.frame))
   
   ## write new data to song/ratings file, without quotation marks or row names
-  write.csv(robj.df, file = "player_table.csv", quote = FALSE, row.names = FALSE)
+  write.csv(robj.df, file = "player_table.csv", quote = FALSE,
+            row.names = FALSE)
 }
