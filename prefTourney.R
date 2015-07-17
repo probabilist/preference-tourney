@@ -141,7 +141,7 @@ prefTourney <- function(){
     preference <- input(players[pair])
     
     
-    # exit repeat-loop if chooing not to continue
+    # exit repeat-loop if choosing not to continue
     if(is.na(preference)){break}
     
     
