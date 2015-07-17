@@ -1,6 +1,8 @@
 # Preference Tourney
 
-Suppose you have a list of items that you want to order from your most favorite to your least favorite. This program allows you to run an unending sequence of games, pitting pairs of items against one another. You decide which of the pair you prefer. Through your decisions, R determines your preference ranking of all the items. It does this through the Glicko rating system.
+Suppose you have a list of items that you want to order from your most favorite to your least favorite. This R script allows you to run an unending sequence of games, pitting pairs of items against one another. You decide which of the pair you prefer. Through your decisions, R determines your preference ranking of all the items. It does this through the Glicko rating system.
+
+To use Preference Tourney, save the script, `prefTourney.R`, and `README.md` to the same folder, then run the script in R.
 
 ## `prefTourney.R`
 
