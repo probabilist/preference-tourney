@@ -2,14 +2,21 @@ library(PlayerRatings)
 
 # Get players and number of games played from player/ratings file.
 
-playerTable <- read.csv("player_table.csv") # read csv as a data frame
+## get script directory
+srcdir <- getSrcDirectory(function(x) {x})
+if (srcdir != ""){
+  srcdir <- paste0(srcdir, "/")
+}
+
+## read csv as a data frame
+playerTable <- read.csv(paste0(srcdir, "player_table.csv"))
 
 ## convert factors to characters, for better functioning and
 ## to be compatible with glicko function
 i <- sapply(playerTable, is.factor)
 playerTable[i] <- lapply(playerTable[i], as.character)
 
-## sort playerTable by Player
+## sort playerTable by Player to match output of glicko function
 playerTable <- playerTable[order(playerTable$Player),]
 
 players <- playerTable$Player
@@ -98,7 +105,7 @@ if(firstGame == 0){
   # format initializing status for glicko function
   
   ## convert Lag from date/time last played to weeks since played
-  lastPlayed <- playerTable$Lag
+  lastPlayed <- as.numeric(as.POSIXct(playerTable$Lag))
   currentTime <- as.numeric(Sys.time()) 
   playerTable$Lag <- 1 + floor((currentTime - lastPlayed)/(7*24*3600))
   
@@ -115,12 +122,14 @@ if(firstGame == 0){
   
   ## convert Lag to date/time last played
   lagBinary <- pmin(robj$ratings$Lag, 1)
-  robj$ratings$Lag <- lastPlayed * lagBinary + currentTime * (1 - lagBinary)
+  robj$ratings$Lag <- as.POSIXct(
+    lastPlayed * lagBinary + currentTime * (1 - lagBinary),
+    origin = "1970-01-01")
   
   ## convert ratings to data frame
   robj.df <- do.call("rbind", lapply(robj["ratings"], as.data.frame))
   
   ## write new data to song/ratings file, without quotation marks or row names
-  write.csv(robj.df, file = "player_table.csv", quote = FALSE,
+  write.csv(robj.df, file = paste0(srcdir, "player_table.csv"), quote = FALSE,
             row.names = FALSE)
 }
