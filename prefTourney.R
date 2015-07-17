@@ -1,5 +1,5 @@
 input <- function(choices){
-  # `choices` is a vector of strings of length at most 9, which will be
+  # `choices` is a list of length at most 9, whose elements will be
   # displayed in a numbered list. The user will be prompted to enter their
   # choice. The user can only enter a valid digit or press return. If they
   # enter a valid digit, the function returns that digit. If they press return,
@@ -29,9 +29,11 @@ input <- function(choices){
 
 prefTourney <- function(){
   # Display title
-  cat("------------------",
-      "Preference Tourney",
-      "------------------", "", sep = "\n")
+  cat(sep = "\n", "",
+"------------------",
+"Preference Tourney",
+"------------------", ""
+     )
   
   
   repeat{
@@ -208,5 +210,7 @@ prefTourney <- function(){
   ## write new data to song/ratings file, without quotation marks or row names
   write.csv(robj.df, dataFile, quote = FALSE, row.names = FALSE)
 }
+
+
 
 prefTourney()
