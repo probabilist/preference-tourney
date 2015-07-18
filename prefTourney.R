@@ -59,7 +59,7 @@ prefTourney <- function(){
     }
     
     ## show README file
-    file.show("README.md")
+    file.show(paste0(scriptDir, "README.md"))
     
     ## display message
     cat(sep = "\n", "",
@@ -86,13 +86,13 @@ prefTourney <- function(){
                 "Pulp Fiction", "Raiders of the Lost Ark", "Star Wars",
                 "The Dark Knight", "The Matrix", "The Shawshank Redemption",
                 "The Terminator")
-    Rating = rep(2200,10)
-    Deviation = rep(300,10)
-    Games = rep(0,10)
-    Win = rep(0,10)
-    Draw = rep(0,10)
-    Loss = rep(0,10)
-    Lag = rep(as.POSIXct(Sys.time()),10)
+    Rating = rep(2200, 10)
+    Deviation = rep(300, 10)
+    Games = rep(0, 10)
+    Win = rep(0, 10)
+    Draw = rep(0, 10)
+    Loss = rep(0, 10)
+    Lag = rep(as.POSIXct(Sys.time()), 10)
     template <- data.frame(Player, Rating, Deviation, Games, Win, Draw, Loss,
                            Lag, stringsAsFactors = FALSE)
     
@@ -172,7 +172,7 @@ prefTourney <- function(){
   
   
   # format list of games for glicko function
-  week <- rep(1,length(homeTeam)) # create the time period column
+  week <- rep(1, length(homeTeam)) # create the time period column
   
   ## create data frame for glicko
   gameList <- data.frame(Week = week, HomeTeam = homeTeam, AwayTeam = awayTeam,

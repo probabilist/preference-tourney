@@ -12,9 +12,9 @@ When you run this script, you will be presented with three choices, which are de
 
 When you choose "Load file", you tell R which file contains the items you wish to rank. The file you load must be a CSV file with seven columns labeled Player, Rating, Deviation, Games, Win, Draw, Loss, and Lag.
 
-The Player column gives the names of the items. The Rating is a number expressing the strength of the preference. An item with a higher rating is preferred over an item with a lower rating. The Deviation is a number describing the program's confidence in the accuracy of the Rating. The smaller the Deviation, the higher the confidence. When creating a new file, or when adding items to a file, the Rating and Deviation should be set to 2200 and 300, respectively.
+The Player column gives the names of the items. The Rating is a number expressing the strength of the preference. An item with a higher rating is preferred over an item with a lower rating. The Deviation is a number describing R's confidence in the accuracy of the Rating. The smaller the Deviation, the higher the confidence. When creating a new file, or when adding items to a file, the Rating and Deviation should be set to 2200 and 300, respectively.
 
-The Lag is the last time the item was involved in a game, written in the format "YYYY-MM-DD HH:MM:SS". For new items, the Lag should be set to the current time.
+The Lag is the last time the item was involved in a game, written in the format "YYYY-MM-DD HH:MM:SS". For new items, the Lag should be set to the current date and time.
 
 The other columns are self-explanatory, and their initial values should be 0. Note that Draw is not used in this program. Nonetheless, the column must appear in the file.
 
